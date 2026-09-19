@@ -11,10 +11,6 @@
 
     <artifactId>invoice-app</artifactId>
 
-    <description>
-        发票-Web 层与 Spring Boot 启动入口（com.luoge.ns.invoice.InvoiceApplication）
-    </description>
-
     <dependencies>
 
         <dependency>
@@ -77,7 +73,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.luoge.ns.invoice.InvoiceApplication</mainClass>
+                    <mainClass>com.yhq.invoice.app.InvoiceApplication</mainClass>
                     <!-- 可执行 fat jar 以 exec 分类器附加发布，保留普通 jar 作为主构件，
                          否则 repackage 后的 fat jar 会覆盖主构件，导致 ruoyi-admin 无法引用其中的 class -->
                     <classifier>exec</classifier>
