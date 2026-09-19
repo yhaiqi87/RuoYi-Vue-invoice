@@ -16,6 +16,11 @@
     </description>
 
     <dependencies>
+        <!-- 发票模块（Web 层与启动入口） -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>invoice-app</artifactId>
+        </dependency>
 
         <!-- spring-boot-devtools -->
         <dependency>

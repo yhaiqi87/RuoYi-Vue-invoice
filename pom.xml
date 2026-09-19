@@ -31,6 +31,14 @@
         <jwt.version>0.9.1</jwt.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <springdoc.version>2.9.0</springdoc.version>
+
+        <!-- 发票模块（invoice-*）相关依赖版本 -->
+        <hutool.version>5.8.42</hutool.version>
+        <pdfbox.version>3.0.4</pdfbox.version>
+        <zxing.version>3.5.3</zxing.version>
+        <thymeleaf.version>3.1.2.RELEASE</thymeleaf.version>
+        <aspectj.version>1.9.25.1</aspectj.version>
+        <lombok.version>1.18.46</lombok.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -170,6 +178,91 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+            <!-- ==================== 发票模块（invoice-*） ==================== -->
+
+            <!-- 发票-跨渠道公共契约与资产 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>invoice-common</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 发票-乐企渠道实现 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>invoice-leqi</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 发票-RPA渠道实现 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>invoice-rpa</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 发票-数电票版式文件（PDF）生成 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>invoice-banstyle</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 发票-Web层与启动入口 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>invoice-app</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 常用工具类（invoice-* 模块使用） -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- PDF 生成（invoice-banstyle 使用） -->
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
+            </dependency>
+
+            <!-- 二维码生成（invoice-banstyle 使用） -->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${zxing.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${zxing.version}</version>
+            </dependency>
+
+            <!-- 模板引擎（invoice-banstyle HTML 版式使用） -->
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf</artifactId>
+                <version>${thymeleaf.version}</version>
+            </dependency>
+
+            <!-- AOP 织入（invoice-app / invoice-leqi 使用） -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+
+            <!-- lombok（invoice-* 模块使用） -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -180,6 +273,11 @@
         <module>ruoyi-quartz</module>
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
+        <module>invoice-common</module>
+        <module>invoice-leqi</module>
+        <module>invoice-rpa</module>
+        <module>invoice-banstyle</module>
+        <module>invoice-app</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -200,6 +298,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+            </plugin>
+            <!-- 显式锁定 surefire：Maven 3.8 默认的 2.12.4 不识别 JUnit 5，
+                 会导致 invoice-* 模块的单元测试被静默跳过 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.6</version>
             </plugin>
         </plugins>
     </build>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>RuoYi-invoice</artifactId>
+        <groupId>com.ruoyi</groupId>
+        <version>3.9.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>invoice-common</artifactId>
+
+    <description>
+        发票-跨渠道公共契约与资产：统一能力接口、请求基类、统一响应、异常、Req/Res DTO、枚举与 HTTP 抽象
+    </description>
+
+    <dependencies>
+
+        <!-- 常用工具类（DateUtil / EnumUtil / JSONUtil 等） -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring 核心容器（spring-context / spring-beans） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- @JsonIgnore 等 Jackson 注解用于路由字段 capabilityCode 不进入乐企报文 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
+        <!-- jakarta.validation 注解（@NotNull/@NotBlank 等），用于请求入参必填声明；版本由 Spring Boot BOM 管理 -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>
